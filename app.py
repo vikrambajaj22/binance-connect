@@ -11,7 +11,7 @@ load_dotenv()
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', error='no info available, click the refresh button')
 
 
 @app.route('/get-balances', methods=['POST'])
@@ -20,11 +20,11 @@ def get_balances():
     error = ''
     if request.method == 'POST':
         try:
-            connect_to_binance.compute_balances()
+            results = connect_to_binance.compute_balances()
+            return render_template('index.html', results=results)
         except Exception as e:
             error = '{}'.format(repr(e))
-            return render_template('index.html', results=results, error=error)
-    return render_template('index.html', results=results, error=error)
+            return render_template('index.html', error=error)
 
 
 if __name__ == '__main__':

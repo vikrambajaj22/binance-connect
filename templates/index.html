@@ -21,10 +21,16 @@
             <div class="col s12 m8 l8 push-m2 push-l2">
                 <div class="card grey darken-3">
                     <div class="card-content white-text">
-                        <a class="btn-floating btn-large waves-effect waves-light green"><i
-                                class="material-icons">refresh</i></a>
-                        <p>{% if results %}{{ results }}{% else %}no info available, click the refresh button{% endif %}
-                        </p>
+                        <form action="/get-balances" method="post">
+                            <button class="btn-floating btn-large waves-effect waves-light green"><i
+                                    class="material-icons" type="submit">refresh</i></button>
+                        </form>
+                        {% if results %}
+                        {{ results | tojson }}
+                        {% endif %}
+                        {% if error %}
+                        <p class="center red-text"><br>{{ error }}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
