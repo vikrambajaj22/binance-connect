@@ -60,10 +60,11 @@ def compute_balances():
                     assets[asset]['current_value'] = assets[asset]['current_price'] * \
                         assets[asset]['volume']
                     # TODO: compute purchase value based on prev orders for asset
-                    assets[asset]['purchase_value'] = get_purchase_value(
+                    purchase_value = get_purchase_value(
                         symbol, client)
-                    assets[asset]['average_purchase_price'] = assets[asset]['purchase_value'] / \
+                    assets[asset]['average_purchase_price'] = purchase_value / \
                         assets[asset]['volume']
+                    assets[asset]['purchase_value'] = purchase_value
                     assets[asset]['profit'] = assets[asset]['current_value'] - \
                         assets[asset]['purchase_value']
 

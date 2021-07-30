@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask.templating import render_template
 from dotenv import load_dotenv
 
@@ -11,20 +11,21 @@ load_dotenv()
 
 @app.route('/')
 def home():
-    return render_template('index.html', error='no info available, click the refresh button')
+    return render_template('index.html')
 
 
-@app.route('/get-balances', methods=['POST'])
+@app.route('/api/get-balances', methods=['POST'])
 def get_balances():
     results = {}
     error = ''
     if request.method == 'POST':
         try:
             results = connect_to_binance.compute_balances()
-            return render_template('index.html', results=results)
+            return jsonify(results)
         except Exception as e:
-            error = '{}'.format(repr(e))
-            return render_template('index.html', error=error)
+            error = 'an exception occurred: {}'.format(repr(e))
+            print(error)
+            return jsonify({'error': error})
 
 
 if __name__ == '__main__':
