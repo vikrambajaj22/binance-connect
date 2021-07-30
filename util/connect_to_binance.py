@@ -65,14 +65,15 @@ def compute_balances():
                     assets[asset]['average_purchase_price'] = assets[asset]['purchase_value'] / \
                         assets[asset]['volume']
                     assets[asset]['profit'] = assets[asset]['current_value'] - \
-                        assets[asset]['total_purchase_value']
+                        assets[asset]['purchase_value']
 
-    result['total_current_value'] = sum(
-        [assets[a]['current_value'] for a in assets])
     result['assets'] = assets
-    result['total_purchase_value'] = sum(
+    result['stats'] = {}
+    result['stats']['total_current_value'] = sum(
+        [assets[a]['current_value'] for a in assets])
+    result['stats']['total_purchase_value'] = sum(
         [assets[a]['purchase_value'] for a in assets])
-    result['total_profit'] = result['total_current_value'] - \
-        result['total_purchase_value']
+    result['stats']['total_profit'] = result['stats']['total_current_value'] - \
+        result['stats']['total_purchase_value']
     print(result)
     return result
