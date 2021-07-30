@@ -1,10 +1,12 @@
 from flask import Flask, request
 from flask.templating import render_template
+from dotenv import load_dotenv
 
 from util import connect_to_binance
 
 
 app = Flask(__name__)
+load_dotenv()
 
 
 @app.route('/')
@@ -18,7 +20,7 @@ def get_balances():
     error = ''
     if request.method == 'POST':
         try:
-            connect_to_binance()
+            connect_to_binance.compute_balances()
         except Exception as e:
             error = '{}'.format(repr(e))
             return render_template('index.html', results=results, error=error)
