@@ -29,11 +29,12 @@ def get_symbol(asset):
 def compute_balances():
     client = get_binance_client()
     account_info = client.get_account()
-    print('client info: {}'.format(account_info))
+    # print('client info: {}'.format(account_info))
 
     balances = account_info['balances']
 
     assets = {}
+    result = {}
 
     current_usd_values = client.get_symbol_ticker()
 
@@ -54,6 +55,13 @@ def compute_balances():
                     assets[asset]['current_price'] = float(value['price'])
                     assets[asset]['current_value'] = assets[asset]['current_price'] * \
                         assets[asset]['volume']
+                    # TODO: compute average buying price based on prev orders
+                    # TODO: compute current P/L per asset
 
-    print(assets)
+    result['total_current_value'] = sum(
+        [assets[a]['current_value'] for a in assets])
+    result['assets'] = assets
+    # TODO: compute total buying price based on previous orders
+    # TODO: compute total current P/L
+    print(result)
     return assets
