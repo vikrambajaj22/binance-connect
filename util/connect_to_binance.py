@@ -76,5 +76,5 @@ def compute_balances():
         [assets[a]['purchase_value'] for a in assets])
     result['stats']['total_profit'] = result['stats']['total_current_value'] - \
         result['stats']['total_purchase_value']
-    print(result)
+
     return result
