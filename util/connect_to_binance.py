@@ -2,11 +2,24 @@ import requests
 import json
 import os
 from binance.client import Client
+from google.cloud import secretmanager
 
 
 def get_binance_client():
-    api_key = os.getenv('API_KEY')
-    api_secret = os.getenv('API_SECRET')
+    if os.getenv('ENVIRONMENT') == 'local':
+        api_key = os.getenv('API_KEY')
+        api_secret = os.getenv('API_SECRET')
+    else:
+        # ENVIRONMENT is None (not defined) for GCP
+        # for GCP environment, secrets are stored in Secret Manager
+        client = secretmanager.SecretManagerServiceClient()
+        api_key_secret = 'projects/954216747487/secrets/API_KEY/versions/latest'
+        api_secret_secret = 'projects/954216747487/secrets/API_SECRET/versions/latest'
+        api_key = client.access_secret_version(
+            request={"name": api_key_secret}).payload.data.decode("UTF-8")
+        api_secret = client.access_secret_version(
+            request={"name": api_secret_secret}).payload.data.decode("UTF-8")
+
     top_level_domain = os.getenv('TOP_LEVEL_DOMAIN')
 
     client = Client(api_key, api_secret, tld=top_level_domain)
