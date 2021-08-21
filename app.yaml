@@ -25,3 +25,8 @@ handlers:
     # the entire handlers section) when there are no static files defined.
   - url: /.*
     script: auto
+
+env_variables:
+  TOP_LEVEL_DOMAIN: "us"
+  BASE_BINANCE_URL: "https://api.binance.us/api"
+  ENVIRONMENT: "gcp"

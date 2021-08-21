@@ -9,8 +9,7 @@ def get_binance_client():
     if os.getenv('ENVIRONMENT') == 'local':
         api_key = os.getenv('API_KEY')
         api_secret = os.getenv('API_SECRET')
-    else:
-        # ENVIRONMENT is None (not defined) for GCP
+    elif os.getenv('ENVIRONMENT') == 'gcp':
         # for GCP environment, secrets are stored in Secret Manager
         client = secretmanager.SecretManagerServiceClient()
         api_key_secret = 'projects/binance-connect-22/secrets/API_KEY/versions/1'
