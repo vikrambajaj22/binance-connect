@@ -13,8 +13,8 @@ def get_binance_client():
         # ENVIRONMENT is None (not defined) for GCP
         # for GCP environment, secrets are stored in Secret Manager
         client = secretmanager.SecretManagerServiceClient()
-        api_key_secret = 'projects/954216747487/secrets/API_KEY/versions/1'
-        api_secret_secret = 'projects/954216747487/secrets/API_SECRET/versions/1'
+        api_key_secret = 'projects/binance-connect-22/secrets/API_KEY'
+        api_secret_secret = 'projects/binance-connect-22/secrets/API_SECRET'
         api_key = client.access_secret_version(
             request={"name": api_key_secret}).payload.data.decode("UTF-8")
         api_secret = client.access_secret_version(
