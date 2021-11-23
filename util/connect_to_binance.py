@@ -39,7 +39,11 @@ def get_symbol(asset):
 
 
 def get_purchase_value(symbol, client):
-    return 0
+    # hard-coding for now since API is broken
+    if symbol == 'BTCUSD':
+        return 500
+    elif symbol == 'DOGEUSD':
+        return 566.02
 
 
 def compute_balances():
@@ -71,13 +75,17 @@ def compute_balances():
                     assets[asset]['current_price'] = float(value['price'])
                     assets[asset]['current_value'] = assets[asset]['current_price'] * \
                         assets[asset]['volume']
-                    # TODO: compute purchase value based on prev orders for asset
-                    purchase_value = get_purchase_value(
-                        symbol, client)
+                    # TODO: compute total purchase value based on prev orders for asset
+                    # (API needs fixing, client.get_my_trades(symbol=<symbol>) returns [])
+                    if asset == 'USD':
+                        purchase_value = assets[asset]['current_value']
+                    else:
+                        purchase_value = get_purchase_value(
+                            symbol, client)
                     assets[asset]['average_purchase_price'] = purchase_value / \
                         assets[asset]['volume']
                     assets[asset]['purchase_value'] = purchase_value
-                    assets[asset]['profit'] = assets[asset]['current_value'] - \
+                    assets[asset]['change'] = assets[asset]['current_value'] - \
                         assets[asset]['purchase_value']
 
     result['assets'] = assets
@@ -86,7 +94,7 @@ def compute_balances():
         [assets[a]['current_value'] for a in assets])
     result['stats']['total_purchase_value'] = sum(
         [assets[a]['purchase_value'] for a in assets])
-    result['stats']['total_profit'] = result['stats']['total_current_value'] - \
+    result['stats']['total_change'] = result['stats']['total_current_value'] - \
         result['stats']['total_purchase_value']
 
     return result
