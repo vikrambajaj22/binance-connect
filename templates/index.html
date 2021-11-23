@@ -66,7 +66,7 @@
                         tableData += "<td>" + assets[asset]["average_purchase_price"] + "</td>";
                         tableData += "<td>" + assets[asset]["purchase_value"] + "</td>";
                         if (assets[asset]["change"] > 0) {
-                            tableData += "<td style=\"color: green\">" + assets[asset]["change"] + "</td>";
+                            tableData += "<td style=\"color: lightgreen\">" + assets[asset]["change"] + "</td>";
                         }
                         else if (assets[asset]["change"] < 0) {
                             tableData += "<td style=\"color: red\">" + assets[asset]["change"] + "</td>";
@@ -81,7 +81,7 @@
                     summary = "<p><b>Total Current Value:</b> " + stats["total_current_value"];
                     summary += "<br /><b>Total Purchase Value:</b> " + stats["total_purchase_value"];
                     if (stats["total_change"] > 0) {
-                        summary += "<br /><b>Total Change:</b><span style=\"color: green\"> " + stats["total_change"] + "</span></p>";
+                        summary += "<br /><b>Total Change:</b><span style=\"color: lightgreen\"> " + stats["total_change"] + "</span></p>";
                     }
                     else if (stats["total_change"] < 0) {
                         summary += "<br /><b>Total Change:</b><span style=\"color: red\"> " + stats["total_change"] + "</span></p>";
