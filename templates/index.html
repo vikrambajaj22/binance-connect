@@ -21,12 +21,7 @@
             <div class="col s12 m8 l8 push-m2 push-l2">
                 <div class="card black">
                     <div class="card-content white-text">
-                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="getBalances();"><i
-                                class="
-                            material-icons">refresh</i></a>
-                        <br />
                         <div id="results-table">
-                            <p class="red-text center">click the refresh button to get balances</p>
                         </div>
                     </div>
                 </div>
@@ -34,7 +29,7 @@
         </div>
     </main>
     <script type="text/javascript">
-        function getBalances() {
+        window.onload = function getBalances() {
             fetch('/api/get-balances', { 'method': 'POST' })
                 .then(function (response) {
                     return response.json();
@@ -43,7 +38,7 @@
                     // console.log(data);
                     var assets = data["assets"];
                     var stats = data["stats"];
-                    var tableData = `<table class="striped white-text">
+                    var tableData = `<table class="striped white-text responsive-table">
                             <thead>
                                 <tr>
                                     <th>Asset</th>
