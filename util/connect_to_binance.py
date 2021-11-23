@@ -34,6 +34,8 @@ def get_symbol(asset):
     '''
     if asset == 'USD':
         return asset + 'TUSD'
+    elif asset == 'SHIB':
+        return asset + 'USDT'
     else:
         return asset + 'USD'
 
@@ -44,6 +46,8 @@ def get_purchase_value(symbol, client):
         return 500
     elif symbol == 'DOGEUSD':
         return 566.02
+    elif symbol == 'SHIBUSDT':
+        return 20
 
 
 def compute_balances():
