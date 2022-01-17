@@ -17,7 +17,8 @@ load_dotenv()
 def notify():
     print('sending notification')
     SendMail(sender='vikrambajaj220496@gmail.com', to='vikrambajaj@nyu.edu',
-             subject="Binance_Connect Notification", body="Test")
+             subject="Binance_Connect Notification", body="Test",
+             make_sync_call=google.appengine.api.apiproxy_stub_map.MakeSyncCall)
 
 
 scheduler = BackgroundScheduler()
