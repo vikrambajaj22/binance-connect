@@ -15,10 +15,10 @@ load_dotenv()
 
 
 def notify():
-    print('sending notification')
-    SendMail(sender='vikrambajaj220496@gmail.com', to='vikrambajaj@nyu.edu',
-             subject="Binance_Connect Notification", body="Test",
-             make_sync_call=google.appengine.api.apiproxy_stub_map.MakeSyncCall)
+    print('not sending notification')
+    # SendMail(sender='vikrambajaj220496@gmail.com', to='vikrambajaj@nyu.edu',
+    #          subject="Binance_Connect Notification", body="Test",
+    #          make_sync_call=google.appengine.api.apiproxy_stub_map.MakeSyncCall)
 
 
 scheduler = BackgroundScheduler()
@@ -49,4 +49,5 @@ def get_balances():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080, host='0.0.0.0')
+    # cron job runs twice if debug=True
+    app.run(debug=False, port=8080, host='0.0.0.0')
