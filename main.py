@@ -1,24 +1,18 @@
 import atexit
-import google.appengine.api
 
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask.templating import render_template
-from google.appengine.api.mail import SendMail
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from util import connect_to_binance
 
 app = Flask(__name__)
-app.wsgi_app = google.appengine.api.wrap_wsgi_app(app.wsgi_app)
 load_dotenv()
 
 
 def notify():
     print('not sending notification')
-    # SendMail(sender='vikrambajaj220496@gmail.com', to='vikrambajaj@nyu.edu',
-    #          subject="Binance_Connect Notification", body="Test",
-    #          make_sync_call=google.appengine.api.apiproxy_stub_map.MakeSyncCall)
 
 
 scheduler = BackgroundScheduler()
