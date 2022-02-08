@@ -61,6 +61,7 @@
                                     <th class="grey darken-4">Average Purchase Price</th>
                                     <th class="grey darken-4">Purchase Value</th>
                                     <th class="grey darken-4">Change</th>
+                                    <th class="grey darken-4">&#x25B2;&#x25BC;</th>
                                 </tr>
                             </thead>`;
                     for (var asset in assets) {
@@ -70,14 +71,18 @@
                         tableData += "<td>" + assets[asset]["current_value"] + "</td>";
                         tableData += "<td>" + assets[asset]["average_purchase_price"] + "</td>";
                         tableData += "<td>" + assets[asset]["purchase_value"] + "</td>";
+                        percentChange = Math.abs(round(assets[asset]["change"] * 100 / assets[asset]["purchase_value"]));
                         if (assets[asset]["change"] > 0) {
                             tableData += "<td style=\"color: lightgreen\">" + assets[asset]["change"] + "</td>";
+                            tableData += "<td style=\"color: lightgreen\"> &#x25B2; " + percentChange + "%</td>";
                         }
                         else if (assets[asset]["change"] < 0) {
                             tableData += "<td style=\"color: red\">" + assets[asset]["change"] + "</td>";
+                            tableData += "<td style=\"color: red\"> &#x25BC; " + percentChange + "%</td>";
                         }
                         else {
                             tableData += "<td>" + assets[asset]["change"] + "</td>";
+                            tableData += "<td> &#x25B2; " + percentChange + "%</td>";
                         }
                         tableData += "</tr>";
                     }
