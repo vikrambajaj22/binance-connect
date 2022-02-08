@@ -37,6 +37,10 @@
         </div>
     </main>
     <script type="text/javascript">
+        function round(num) {
+            return +(Math.round(num + "e+2") + "e-2");
+        }
+
         window.onload = function getBalances() {
             fetch('/api/get-balances', { 'method': 'POST' })
                 .then(function (response) {
@@ -80,14 +84,15 @@
                     // add stats
                     summary = "<p><b>Total Current Value:</b> " + stats["total_current_value"];
                     summary += "<br /><b>Total Purchase Value:</b> " + stats["total_purchase_value"];
+                    percentChange = Math.abs(round(stats["total_change"] * 100 / stats["total_purchase_value"]));
                     if (stats["total_change"] > 0) {
-                        summary += "<br /><b>Total Change:</b><span style=\"color: lightgreen\"> " + stats["total_change"] + "</span></p>";
+                        summary += "<br /><b>Total Change:</b><span style=\"color: lightgreen\"> " + stats["total_change"] + " &#x25B2; " + percentChange + "%</span>";
                     }
                     else if (stats["total_change"] < 0) {
-                        summary += "<br /><b>Total Change:</b><span style=\"color: red\"> " + stats["total_change"] + "</span></p>";
+                        summary += "<br /><b>Total Change:</b><span style=\"color: red\"> " + stats["total_change"] + " &#x25BC; " + percentChange + "%</span>";
                     }
                     else {
-                        summary += "<br /><b>Total Change:</b> " + stats["total_change"] + "</p>";
+                        summary += "<br /><b>Total Change:</b> " + stats["total_change"] + " &#x25B2; " + percentChange + "%";
                     }
 
                     document.getElementById("summary").innerHTML = summary;
