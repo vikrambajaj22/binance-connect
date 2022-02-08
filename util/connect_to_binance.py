@@ -1,6 +1,6 @@
-import requests
 import json
 import os
+
 from binance.client import Client
 from google.cloud import secretmanager
 

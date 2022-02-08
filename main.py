@@ -5,14 +5,15 @@ from flask import Flask, jsonify, request
 from flask.templating import render_template
 
 from apscheduler.schedulers.background import BackgroundScheduler
-from util import connect_to_binance
+from util import connect_to_binance, send_email
 
 app = Flask(__name__)
 load_dotenv()
 
 
 def notify():
-    print('not sending notification')
+    print('sending notification')
+    # send_email.send('<b>Alert</b>')  # TODO: send email when DOGE price reaches buying average
 
 
 scheduler = BackgroundScheduler()
