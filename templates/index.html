@@ -8,36 +8,35 @@
 </head>
 
 <body class="grey darken-4">
-    <header>
-        <nav>
-            <div class="nav-wrapper black">
-                <img src="{{ url_for('static', filename='images/logo.png') }}">
-                <a href="#" class="brand-logo center amber-text text-lighten-1">Binance-Connect</a>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <div class="row">
-            <div class="col s12 m4 l4 push-m4 push-l4">
-                <div class="card black">
-                    <div class="card-content white-text">
-                        <div id="summary">
-                        </div>
+    <nav>
+        <div class="nav-wrapper black">
+            <img src="{{ url_for('static', filename='images/logo.png') }}">
+            <a href="#" class="brand-logo center amber-text text-lighten-1">Binance-Connect</a>
+        </div>
+    </nav>
+
+
+    <div class="row">
+        <div class="col s12 m4 l4 push-m4 push-l4">
+            <div class="card black">
+                <div class="card-content white-text">
+                    <div id="summary">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 m8 l8 push-m2 push-l2">
-                <div class="card black">
-                    <div class="card-content white-text">
-                        <div id="results-table">
-                        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 l8 push-m2 push-l2">
+            <div class="card black">
+                <div class="card-content white-text">
+                    <div id="results-table">
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
     <script type="text/javascript">
         function round(num) {
             return +(Math.round(num + "e+2") + "e-2");
@@ -107,7 +106,7 @@
                 });
         }
     </script>
-    <footer></footer>
+
 </body>
 
 </html>
