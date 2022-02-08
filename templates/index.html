@@ -12,8 +12,9 @@
 <body class="grey darken-4">
     <nav>
         <div class="nav-wrapper black">
-            <img src="{{ url_for('static', filename='images/logo.png') }}">
-            <a href="#" class="brand-logo center amber-text text-lighten-1">Binance-Connect</a>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" class="hide-on-small-only">
+            <a href="#" class="hide-on-small-only brand-logo center amber-text text-lighten-1">Binance-Connect</a>
+            <a href="#" class="hide-on-med-and-up"><img src="{{ url_for('static', filename='images/logo.png') }}"></a>
         </div>
     </nav>
 
