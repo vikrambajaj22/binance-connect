@@ -8,7 +8,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 
-def send(message_html):
+def send(ticker, message_html):
     if os.getenv('ENVIRONMENT') == 'local':
         sendgrid_api_key = os.getenv('SENDGRID_API_KEY')
     elif os.getenv('ENVIRONMENT') == 'gcp':
@@ -21,11 +21,15 @@ def send(message_html):
     message = Mail(
         from_email='vikrambajaj@nyu.edu',
         to_emails='vikrambajaj@nyu.edu',
-        subject='Alert from Binance Connect App',
+        subject='[{}] Alert from Binance Connect App'.format(ticker),
         html_content=message_html)
     try:
         sg = SendGridAPIClient(sendgrid_api_key)
         response = sg.send(message)
-        print('email sent')
+
+        if str(response.status_code)[0] == '2':
+            print('email sent for {}'.format(ticker))
+        else:
+            print('unknown error while sending email')
     except Exception as e:
         print('exception while sending email: {}'.format(repr(e)))
