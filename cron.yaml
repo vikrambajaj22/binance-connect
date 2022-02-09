@@ -1,0 +1,4 @@
+cron:
+  - description: "hourly notification job"
+    url: /api/notify
+    schedule: every 60 minutes
