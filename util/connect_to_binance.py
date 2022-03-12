@@ -45,7 +45,7 @@ def get_purchase_value(symbol, client):
     if symbol == 'BTCUSD':
         return 500
     elif symbol == 'DOGEUSD':
-        return 566.02
+        return 856.97
     elif symbol == 'SHIBUSDT':
         return 20
 
